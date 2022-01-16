@@ -326,11 +326,3 @@ components:
             properties:   
               message:
                 type: string
-
-  securitySchemes:
-    BasicAuth:
-      type: http
-      scheme: basic
-
-security:
-  - BasicAuth: []

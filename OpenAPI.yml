@@ -45,21 +45,8 @@ paths:
           application/json:
             schema:
               type: array
-              properties:
-                productID:
-                  type: string
-                  example: "61e3f233ab66df6aa6bafeb8"
-                productSpecID:
-                  type: integer
-                  minimum: 0
-                amount:
-                  type: integer
-                  minimum: 1
+              $ref: '#/components/schemas/CreateBasket'
 
-              required:
-                - productID
-                - productSpecID
-                - amount
 
       responses:
         '201':
@@ -296,6 +283,23 @@ components:
           default: null
           example: "2021-11-17T13:13:56.000Z"
           description: When a product gets removed, get current date and time in DATETIME type as the value. 
+
+    CreateBasket:
+      properties:
+        productID:
+          type: string
+          example: "61e3f233ab66df6aa6bafeb8"
+        productSpecID:
+          type: integer
+          minimum: 0
+        amount:
+          type: integer
+          minimum: 1
+
+      required:
+        - productID
+        - productSpecID
+        - amount
 
   responses:
     NotFound:

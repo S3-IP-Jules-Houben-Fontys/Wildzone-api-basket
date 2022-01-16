@@ -44,9 +44,8 @@ paths:
         content:
           application/json:
             schema:
-              type: array
-              $ref: '#/components/schemas/CreateBasket'
-
+              type: object
+              $ref: '#/components/schemas/CreateBasketList'
 
       responses:
         '201':
@@ -225,7 +224,13 @@ components:
       description: Array of baskets.
       type: array
       items:
-        $ref: '#/components/schemas/Basket'    
+        $ref: '#/components/schemas/Basket'  
+
+    CreateBasketList:
+      description: Array of baskets.
+      type: array
+      items:
+        $ref: '#/components/schemas/CreateBasket'    
 
     AddedProductsList:
       description: Array of added product list.

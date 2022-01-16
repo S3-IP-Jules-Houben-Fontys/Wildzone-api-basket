@@ -30,7 +30,7 @@ paths:
 
     post:
       summary: Create basket
-      description: Create a basket for a user with the data from the content application/json.
+      description: Create a basket for a user with the data from the content application/json. The userid can be recovered from the URL. The data needs to be delivered in an array. Only one basket needs to be created, every item in the array needs to be added to the product list, which is part of the basket.
       parameters:
         - in: path
           name: id
@@ -48,8 +48,10 @@ paths:
               properties:
                 productID:
                   type: string
+                  example: "61e3f233ab66df6aa6bafeb8"
                 productSpecID:
                   type: integer
+                  minimum: 0
                 amount:
                   type: integer
                   minimum: 1

@@ -1,0 +1,328 @@
+openapi: '3.0.2'
+info:
+  title: Wildzone basket API
+  version: '1.0'
+servers:
+  - url: localhost:3005/api/v1
+paths:
+  /basket/{:id}:
+    get:
+      summary: GET basket from one user
+      description: Get the most recent basket, which is not paid and not archived, should retrieve only one basket. The ID in the URL is the userID.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            $ref: '#/components/schemas/Basket'
+          required: true
+          description: The ID of the user
+      responses:
+        '200':
+          description: Successfull GET response and successfully retrieved one basket.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UrlIDParameter'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '5XX':
+          $ref: '#/components/responses/ServerError'
+
+    post:
+      summary: Create basket
+      description: Create a basket for a user with the data from the content application/json.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            $ref: '#/components/schemas/Basket'
+          required: true
+          description: The ID of the user
+      requestBody:
+        description: Data to create the basket
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                productID:
+                  type: string
+                productSpecID:
+                  type: integer
+                amount:
+                  type: integer
+                  minimum: 1
+
+              required:
+                - productID
+                - productSpecID
+                - amount
+
+      responses:
+        '201':
+          description: Successfull POST response, basket was created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Basket'
+        
+        '400':
+          $ref: '#/components/responses/InvalidRequest'
+
+        '5XX':
+          $ref: '#/components/responses/ServerError'
+
+  /basket/{:id}/paid:
+    get:
+      summary: Get all baskets which are paid from one user
+      description: Gets all baskets which have the field 'paidAt' set to a date, meaning they are successfully paid for from one user. Does not retrieve baskets with the 'paidAt' field being null or the 'archivedAt' field being null.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            $ref: '#/components/schemas/UrlIDParameter'
+          required: true
+          description: The ID of the user
+      responses:
+
+        '200':
+          description: Successfull GET response and successfully retrieved 0 or more baskets.
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/BasketList'
+
+        '404':
+          $ref: '#/components/responses/NotFound'
+        
+        '5XX':
+          $ref: '#/components/responses/ServerError'
+
+    patch:
+      summary: Basket gets paid  
+      description: Changes the 'paidAt' field from null to the current datetime and returns the patched basket.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            $ref: '#/components/schemas/UrlIDParameter'
+          required: true
+          description: The ID of the user
+
+      responses:
+        '200':
+          description: Successfull PATCH response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Basket'
+
+        '400':
+          $ref: '#/components/responses/InvalidRequest'
+
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+        '5XX':
+          $ref: '#/components/responses/ServerError'
+
+  /basket/{:id}/archived:
+    get:
+      summary: Get all baskets which are archived from one user
+      description: Gets all baskets which have the field 'archived' set to a date, meaning they are archived from one user.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            $ref: '#/components/schemas/UrlIDParameter'
+          required: true
+          description: The ID of the user
+      responses:
+
+        '200':
+          description: Successfull GET response and successfully retrieved 0 or more baskets.
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/BasketList'
+
+        '404':
+          $ref: '#/components/responses/NotFound'
+        
+        '5XX':
+          $ref: '#/components/responses/ServerError'
+
+    patch:
+      summary: Basket gets archived  
+      description: Changes the 'archivedAt' field from null to the current datetime and returns the patched basket.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            $ref: '#/components/schemas/UrlIDParameter'
+          required: true
+          description: The ID of the user
+
+      responses:
+        '200':
+          description: Successfull PATCH response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Basket'
+
+        '400':
+          $ref: '#/components/responses/InvalidRequest'
+
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+        '5XX':
+          $ref: '#/components/responses/ServerError'   
+
+components:
+  schemas:
+    UrlIDParameter:
+      description: The ID of the user. (Needs to be a string!)
+      type: string
+      example: "248289761001"
+
+    Basket:
+      description: Object containing Product objects and basket information.
+      type: object
+      required: 
+        - id
+      properties: 
+
+        id:
+          type: integer
+          readOnly: true
+          example: 1
+          minimum: 0
+
+        userID:
+          type: string
+          example: "248289761001"
+
+        addedProducts:
+          $ref: '#/components/schemas/AddedProductsList'
+
+        paidAt:
+          type: string
+          nullable: true
+          default: null
+          example: 2021-11-17T13:13:56.000Z
+          description: When the basket gets paid, get current date and time in DATETIME type as the value. 
+
+        archivedAt:
+          type: string
+          nullable: true
+          default: null
+          example: 2021-11-17T13:13:56.000Z
+          description: When the basket gets archived, get current date and time in DATETIME type as the value. 
+
+        createdAt:
+          type: string
+          example: 2021-11-17T13:13:56.000Z
+          description: When the basket gets created, get current date and time in DATETIME type as the value.
+
+        updatedAt:
+          type: string
+          example: 2021-11-17T13:13:56.000Z
+          description: When the basket gets created, get current date and time in DATETIME type as the value. Also when the basket gets updated, get current date and time in DATETIME type as the value.
+    
+    BasketList:
+      description: Array of baskets.
+      type: array
+      items:
+        $ref: '#/components/schemas/Basket'    
+
+    AddedProductsList:
+      description: Array of added product list.
+      type: array
+      items:
+        $ref: '#/components/schemas/Product'    
+    
+    Product:
+      description: Object containing Product information.
+      title: Product
+      required: 
+        - id
+        - productID
+        - productSpecID
+        - amount
+        - addedAt
+        - updatedAt
+        - removedAt
+        
+      properties:
+
+        id:
+          type: integer
+          readOnly: true
+          example: 1
+          minimum: 0
+
+        productID:
+          type: string
+          example: 61e3f233ab66df6aa6bafeb8
+
+        productSpecID:
+          type: integer
+          example: 1
+
+        amount:
+          type: integer
+          example: 3
+          minimum: 0
+          maximum: 99
+
+        addedAt:
+          type: string
+          example: 2021-11-17T13:13:56.000Z
+          description: When a product gets added, get current date and time in DATETIME type as the value. 
+
+        updatedAt:
+          type: string
+          example: 2021-11-17T13:13:56.000Z
+          description: When a product gets added, get current date and time in DATETIME type as the value. Also when a product gets updated, get current date and time in DATETIME type as the value. And when a product gets removed, get current date and time in DATETIME type as the value.  
+
+        removedAt:
+          type: string
+          nullable: true
+          default: null
+          example: 2021-11-17T13:13:56.000Z
+          description: When a product gets removed, get current date and time in DATETIME type as the value. 
+
+
+  responses:
+    NotFound:
+      description: The resource was not found with the given ID.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:   
+              message:
+                type: string
+      
+    ServerError:
+      description: The server encountered an error.
+      content: 
+        application/json:
+          schema:
+            type: object
+            properties:   
+              message:
+                type: string
+
+    InvalidRequest:
+      description: The request is not valid.
+      content: 
+        application/json:
+          schema:
+            type: object
+            properties:   
+              message:
+                type: string

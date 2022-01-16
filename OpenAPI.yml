@@ -212,24 +212,24 @@ components:
           type: string
           nullable: true
           default: null
-          example: 2021-11-17T13:13:56.000Z
+          example: "2021-11-17T13:13:56.000Z"
           description: When the basket gets paid, get current date and time in DATETIME type as the value. 
 
         archivedAt:
           type: string
           nullable: true
           default: null
-          example: 2021-11-17T13:13:56.000Z
+          example: "2021-11-17T13:13:56.000Z"
           description: When the basket gets archived, get current date and time in DATETIME type as the value. 
 
         createdAt:
           type: string
-          example: 2021-11-17T13:13:56.000Z
+          example: "2021-11-17T13:13:56.000Z"
           description: When the basket gets created, get current date and time in DATETIME type as the value.
 
         updatedAt:
           type: string
-          example: 2021-11-17T13:13:56.000Z
+          example: "2021-11-17T13:13:56.000Z"
           description: When the basket gets created, get current date and time in DATETIME type as the value. Also when the basket gets updated, get current date and time in DATETIME type as the value.
     
     BasketList:
@@ -280,19 +280,19 @@ components:
 
         addedAt:
           type: string
-          example: 2021-11-17T13:13:56.000Z
+          example: "2021-11-17T13:13:56.000Z"
           description: When a product gets added, get current date and time in DATETIME type as the value. 
 
         updatedAt:
           type: string
-          example: 2021-11-17T13:13:56.000Z
+          example: "2021-11-17T13:13:56.000Z"
           description: When a product gets added, get current date and time in DATETIME type as the value. Also when a product gets updated, get current date and time in DATETIME type as the value. And when a product gets removed, get current date and time in DATETIME type as the value.  
 
         removedAt:
           type: string
           nullable: true
           default: null
-          example: 2021-11-17T13:13:56.000Z
+          example: "2021-11-17T13:13:56.000Z"
           description: When a product gets removed, get current date and time in DATETIME type as the value. 
 
 

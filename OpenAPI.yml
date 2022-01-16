@@ -39,12 +39,12 @@ paths:
           required: true
           description: The ID of the user
       requestBody:
-        description: Data to create the basket
+        description: Data to create the basket for a user. The userid can be recovered from the URL. The data needs to be delivered in an array. Only one basket needs to be created, every item in the array needs to be added to the product list, which is part of the basket.
         required: true
         content:
           application/json:
             schema:
-              type: object
+              type: array
               properties:
                 productID:
                   type: string

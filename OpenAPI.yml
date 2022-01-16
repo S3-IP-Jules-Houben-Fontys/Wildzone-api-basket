@@ -13,7 +13,7 @@ paths:
         - in: path
           name: id
           schema:
-            $ref: '#/components/schemas/Basket'
+            $ref: '#/components/schemas/UrlIDParameter'
           required: true
           description: The ID of the user
       responses:
@@ -22,7 +22,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UrlIDParameter'
+                $ref: '#/components/schemas/Basket'
         '404':
           $ref: '#/components/responses/NotFound'
         '5XX':
@@ -35,7 +35,7 @@ paths:
         - in: path
           name: id
           schema:
-            $ref: '#/components/schemas/Basket'
+            $ref: '#/components/schemas/UrlIDParameter'
           required: true
           description: The ID of the user
       requestBody:
@@ -294,7 +294,6 @@ components:
           default: null
           example: "2021-11-17T13:13:56.000Z"
           description: When a product gets removed, get current date and time in DATETIME type as the value. 
-
 
   responses:
     NotFound:

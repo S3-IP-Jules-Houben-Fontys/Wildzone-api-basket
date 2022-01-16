@@ -12,7 +12,7 @@ In this repository, a part of the userstory <a href="https://dev.azure.com/46124
 
 <h2 id="start">Getting started</h2>
 
-If you are not familiar with this API, it's recommended that you first read the <a href="#">OpenAPI 3.0 specification</a>, or you can read the generated documentation by Postman <a href="#">here</a> to get the hang of how this API works. 
+If you are not familiar with this API, it's recommended that you first read the <a href="#https://github.com/S3-IP-Jules-Houben-Fontys/Wildzone-api-basket/blob/development/OpenAPI.yml">OpenAPI 3.0 specification</a>, or you can read <a href="https://documenter.getpostman.com/view/17792690/UVXjLc2y">the generated documentation by Postman here</a> to get the hang of how this API works. 
 
 There are two ways to run this API seperately from the entire Wildzone project:
 

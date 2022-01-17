@@ -9,8 +9,11 @@ app.use(express.json());
 
 app.get('/test', function(){
     console.log('All good');
-})
+});
 
+app.use("/api/v1/product", require("./routes/product_route"));
+
+// create db schema if not exist
 db.sequelize.sync().catch(err => {
     throw err
 });

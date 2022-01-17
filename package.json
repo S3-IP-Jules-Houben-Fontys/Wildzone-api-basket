@@ -1,0 +1,31 @@
+{
+  "name": "wildzone-api-basket",
+  "version": "1.0.0",
+  "description": "[![Upload docker-image on successfully passing tests on main](https://github.com/S3-IP-Jules-Houben-Fontys/Wildzone-api-basket/actions/workflows/upload-docker-image.yml/badge.svg)](https://github.com/S3-IP-Jules-Houben-Fontys/Wildzone-api-basket/actions/workflows/upload-docker-image.yml)\r [![Test code for development](https://github.com/S3-IP-Jules-Houben-Fontys/Wildzone-api-basket/actions/workflows/development-testing.yml/badge.svg)](https://github.com/S3-IP-Jules-Houben-Fontys/Wildzone-api-basket/actions/workflows/development-testing.yml)\r [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=S3-IP-Jules-Houben-Fontys_Wildzone-api-basket&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=S3-IP-Jules-Houben-Fontys_Wildzone-api-basket)\r [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=S3-IP-Jules-Houben-Fontys_Wildzone-api-basket&metric=coverage)](https://sonarcloud.io/summary/new_code?id=S3-IP-Jules-Houben-Fontys_Wildzone-api-basket)",
+  "main": "server.js",
+  "scripts": {
+    "start" : "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/S3-IP-Jules-Houben-Fontys/Wildzone-api-basket.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/S3-IP-Jules-Houben-Fontys/Wildzone-api-basket/issues"
+  },
+  "homepage": "https://github.com/S3-IP-Jules-Houben-Fontys/Wildzone-api-basket#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^9.0.2",
+    "express": "^4.17.2",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.6.2",
+    "sequelize-cli": "^6.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

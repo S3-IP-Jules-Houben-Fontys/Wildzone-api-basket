@@ -18,7 +18,7 @@ There are two ways to run this API seperately from the entire Wildzone project:
 
 <ul>
     <li><a href="#run">How to run API locally</a></li>
-    <li><a href="docker">How to run API in Docker</a></li>
+    <li><a href="#docker">How to run API in Docker</a></li>
 </ul>
 
 
